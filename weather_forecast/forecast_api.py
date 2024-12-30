@@ -2,7 +2,7 @@ import requests
 
 OPEN_METEO_URL = "https://api.open-meteo.com/v1/forecast"
 
-def get_hourly_forcast(lat, lon, days):
+def fetch_hourly_forcast(lat, lon, days):
     # API parameters
     params = {
         "latitude": lat,
@@ -22,13 +22,33 @@ def get_hourly_forcast(lat, lon, days):
         data = response.json()
 
         # Extract relevant data
-        hourly_forecast = data.get("hourly", {})
+        return data.get("hourly", {})
 
     except requests.exceptions.RequestException as e:
         return {"error": str(e)}
 
-    return hourly_forecast
+def fetch_daily_forcast(lat,lon,days):
+    # API parameters
+    params = {
+        "latitude": lat,
+        "longitude": lon,
+        "daily": "weather_code,sunrise,sunset,uv_index_max",
+        # "timezone": "Asia%2FJerusalem",
+    }
 
+    try:
+        # Make the request
+        response = requests.get(OPEN_METEO_URL, params=params)
+        response.raise_for_status()  # Raise an exception for HTTP errors
+
+        # Parse the JSON response
+        data = response.json()
+
+        # Extract relevant data
+        return data.get("daily", {})
+
+    except requests.exceptions.RequestException as e:
+        return {"error": str(e)}
 
 
 def get_weather_forecast(lat, lon):
