@@ -42,6 +42,7 @@ def new_daily_forecast(latitude, longitude, days=7):
                          sunset=data["sunset"],
                          uv_index=data["uv_index_max"])
 
-print(new_hourly_forecast(31.7788242,35.2257626))
-print(new_daily_forecast(31.7788242,35.2257626))
-print(new_current_weather(31.7788242,35.2257626))
+if __name__=="__main__":
+    print(new_hourly_forecast(31.7788242,35.2257626))
+    print(new_daily_forecast(31.7788242,35.2257626))
+    print(new_current_weather(31.7788242,35.2257626))
