@@ -54,5 +54,3 @@ def daily_data_widget(lat,lon,days=7):
     st.subheader("Additional Information")
     dataframe = daily_data_presenter(lat,lon,days)
     st.table(dataframe)
-
-hourly_data_widget(32.0871000,34.8875000)

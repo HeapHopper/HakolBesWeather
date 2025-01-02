@@ -1,5 +1,4 @@
 import streamlit
-import geocoder
 
 
 from city_geolocation.city_widget import *
