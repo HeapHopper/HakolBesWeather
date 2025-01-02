@@ -1,6 +1,20 @@
 from weather_forecast.forecast_presenter import *
 import streamlit as st
 
+def current_weather_widget(country_name,city_name,lat,lon):
+    st.markdown("____")
+    current_weather = current_weather_presenter(lat,lon)
+    name, temperature, code = st.columns(3)
+    humidity, wind_speed, wind_direction = st.columns(3)
+    st.markdown("____")
+
+    name.metric(country_name,city_name)
+    temperature.metric("Temperature",str(current_weather["temperature"])+" °C","Feels like: "+str(current_weather["apparent_temperature"])+ " °C",delta_color="off",border=False)
+    code.metric("Description", parse_weather_code_util(current_weather["weather_code"]),border=False)
+    humidity.metric("Humidity",str(current_weather["humidity"])+"%",border=True)
+    wind_speed.metric("Wind Speed",str(current_weather["wind_speed"])+" Km/h",border=True)
+    wind_direction.metric("Wind Direction", parse_wind_direction_util(current_weather["wind_direction"]),border=True)
+
 def hourly_data_widget(lat,lon,days=7):
     dataframe = hourly_data_presenter(lat,lon,days)
     #st.table(dataframe)
