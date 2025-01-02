@@ -11,8 +11,12 @@ def hourly_data_presenter(lat,lon,days=7):
     hourly_dataframe = pd.DataFrame(data=hourly_data)
     return hourly_dataframe
 
-def hourly_wind_data_presenter(lat,lon):
-    pass
+def hourly_wind_data_presenter(lat,lon,days=7):
+    hourly = new_hourly_forecast(lat,lon,days=7)
+    hourly_data = {"datetime": pd.date_range(start=hourly.time[0], end=hourly.time[-1], freq='h'),
+                   "wind_speed": hourly.wind_speed, "wind_direction": [parse_wind_direction_util(direction) for direction in hourly.wind_direction]}
+    hourly_dataframe = pd.DataFrame(data=hourly_data)
+    return hourly_dataframe
 
 def daily_data_presenter(lat,lon):
     pass
@@ -54,14 +58,12 @@ def parse_wind_direction_util(degrees):
         return "Invalid direction"
 
     directions = [
-        "North", "North-Northeast", "Northeast", "East-Northeast",
-        "East", "East-Southeast", "Southeast", "South-Southeast",
-        "South", "South-Southwest", "Southwest", "West-Southwest",
-        "West", "West-Northwest", "Northwest", "North-Northwest", "North"
+        "North", "North-East", "East", "South-East",
+        "South", "South-West", "West", "North-West"
     ]
 
-    # There are 16 cardinal directions, so each covers 22.5 degrees
-    index = round(degrees / 22.5) % 16
+    # There are 8 cardinal directions, so each covers 45 degrees
+    index = round(degrees / 45) % 8
     return directions[index]
 
 print(hourly_data_presenter(40.7128,-74.0060))

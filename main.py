@@ -11,5 +11,5 @@ if __name__ == "__main__":
     if(city is not None):
         current_weather_widget(city.country,city.city,city.latitude,city.longitude)
         #hourly_data_widget(city.latitude,city.longitude)
-        #hourly_wind_data_widget(city.latitude,city.longitude)
+        hourly_wind_data_widget(city.latitude,city.longitude)
 

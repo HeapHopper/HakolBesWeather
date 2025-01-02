@@ -6,7 +6,6 @@ def current_weather_widget(country_name,city_name,lat,lon):
     current_weather = current_weather_presenter(lat,lon)
     name, temperature, code = st.columns(3)
     humidity, wind_speed, wind_direction = st.columns(3)
-    st.markdown("____")
 
     name.metric(country_name,city_name)
     temperature.metric("Temperature",str(current_weather["temperature"])+" °C","Feels like: "+str(current_weather["apparent_temperature"])+ " °C",delta_color="off",border=False)
@@ -21,3 +20,16 @@ def hourly_data_widget(lat,lon,days=7):
     st.line_chart(dataframe, x="datetime", y="temperature")
     st.line_chart(dataframe, x="datetime", y="humidity")
     st.bar_chart(dataframe, x="datetime", y="rain probability")
+
+def hourly_wind_data_widget(lat,lon,days=7):
+    st.markdown("____")
+    st.subheader("Wind Forecast")
+    st.text("(Zoom in to show hours)")
+    dataframe = hourly_wind_data_presenter(lat,lon,days)
+    st.scatter_chart(dataframe,
+                     x="datetime", x_label="Date",
+                     y="wind_speed", y_label="Speed [Km/h]",
+                     color="wind_direction")
+
+def daily_data_widget(lat,lon,days=7):
+    pass
