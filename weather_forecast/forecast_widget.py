@@ -39,12 +39,13 @@ def hourly_wind_data_widget(lat,lon,days=7):
     st.markdown("____")
     st.subheader("Wind Forecast")
     st.text("(Zoom in to show hours)")
-
-    dataframe = hourly_wind_data_presenter(lat,lon,days)
-    st.scatter_chart(dataframe,
-                     x="datetime", x_label="Date",
-                     y="wind_speed", y_label="Speed [Km/h]",
-                     color="wind_direction")
+    is_hide = st.checkbox("hide",value=False)
+    if  not is_hide:
+        dataframe = hourly_wind_data_presenter(lat,lon,days)
+        st.scatter_chart(dataframe,
+                         x="datetime", x_label="Date",
+                         y="wind_speed", y_label="Speed [Km/h]",
+                         color="wind_direction")
 
 def daily_data_widget(lat,lon,days=7):
     pass
