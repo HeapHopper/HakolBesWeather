@@ -2,7 +2,7 @@ import pandas as pd
 from weather_forecast.forecast_factory import *
 
 def current_weather_presenter(lat,lon):
-    pass
+    return new_current_weather(lat,lon).dict()
 
 def hourly_data_presenter(lat,lon,days=7):
     hourly = new_hourly_forecast(lat,lon,days)

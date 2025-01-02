@@ -3,21 +3,16 @@ from weather_forecast.forecast_api import *
 
 def new_current_weather(latitude, longitude):
     # TODO
-    # This isn't the actual current weather, this is more of a "today" weather
-    # extracting the correct data to the current time is to be done...
-    hourly = new_hourly_forecast(latitude, longitude,days=1)
-    daily= new_daily_forecast(latitude, longitude,days=1)
-    print(hourly)
-    return CurrentWeather(time=hourly.time[0],
-                          temperature=hourly.temperature[0],
-                          humidity=hourly.humidity[0],
-                          rain_prob=hourly.rain_prob[0],
-                          wind_speed=hourly.wind_speed[0],
-                          wind_direction=hourly.wind_direction[0],
-                          sunrise=daily.sunrise[0],
-                          sunset=daily.sunset[0],
-                          weather_code=daily.weather_code[0],
-                          uv_index=daily.uv_index[0])
+    current = fetch_current_forecast(latitude,longitude)
+    return CurrentWeather(latitude=latitude,
+                          longitude=longitude,
+                          time=current["time"],
+                          temperature=current["temperature_2m"],
+                          apparent_temperature=current["apparent_temperature"],
+                          weather_code=current["weather_code"],
+                          humidity=current["relative_humidity_2m"],
+                          wind_speed=current["wind_speed_10m"],
+                          wind_direction=current["wind_direction_10m"])
 
 def new_hourly_forecast(latitude, longitude, days=7):
     data = fetch_hourly_forcast(latitude,longitude,days)

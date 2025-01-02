@@ -1,17 +1,16 @@
 from pydantic import BaseModel
 
 class CurrentWeather(BaseModel):
+    latitude:   float
+    longitude:  float
+
     time: str | None
     temperature: float | None
+    apparent_temperature: float | None
+    weather_code: int | None
     humidity: int | None
-    rain_prob: float | None
     wind_speed: float | None
     wind_direction: int | None
-
-    sunrise: str | None
-    sunset: str | None
-    weather_code: int | None
-    uv_index: float | None
 
 class HourlyForecast(BaseModel):
     latitude:   float
