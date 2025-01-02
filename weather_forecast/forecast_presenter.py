@@ -1,4 +1,5 @@
 import pandas as pd
+from datetime import datetime
 from weather_forecast.forecast_factory import *
 
 def current_weather_presenter(lat,lon):
@@ -18,8 +19,18 @@ def hourly_wind_data_presenter(lat,lon,days=7):
     hourly_dataframe = pd.DataFrame(data=hourly_data)
     return hourly_dataframe
 
-def daily_data_presenter(lat,lon):
-    pass
+def daily_data_presenter(lat,lon,days=7):
+    daily = new_daily_forecast(lat, lon, days)
+    daily_data = {"Date": [datetime.fromisoformat(dt).date() for dt in daily.time],
+                  "Minimum Temperature": [round(temp,3) for temp in daily.min_temp],
+                  "Maximum Temperature": [round(temp,3) for temp in daily.max_temp],
+                  "Sunrise": [datetime.fromisoformat(dt).time() for dt in daily.sunrise],
+                  "Sunset": [datetime.fromisoformat(dt).time() for dt in daily.sunset]}
+    daily_dataframe = pd.DataFrame(data=daily_data)
+    daily_dataframe.set_index('Date')
+    return daily_dataframe
+
+
 def parse_weather_code_util(code):
     wmo_descriptions = {
         0: "Clear sky",
@@ -67,3 +78,7 @@ def parse_wind_direction_util(degrees):
     return directions[index]
 
 print(hourly_data_presenter(40.7128,-74.0060))
+print(hourly_wind_data_presenter(40.7128,-74.0060))
+print(daily_data_presenter(40.7128,-74.0060))
+
+#print(daily_data_presenter(40.7128,-74.0060))

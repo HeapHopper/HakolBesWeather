@@ -1,3 +1,5 @@
+import pandas as pd
+
 from weather_forecast.forecast_presenter import *
 import streamlit as st
 
@@ -48,4 +50,9 @@ def hourly_wind_data_widget(lat,lon,days=7):
                          color="wind_direction")
 
 def daily_data_widget(lat,lon,days=7):
-    pass
+    st.markdown("____")
+    st.subheader("Additional Information")
+    dataframe = daily_data_presenter(lat,lon,days)
+    st.table(dataframe)
+
+hourly_data_widget(32.0871000,34.8875000)

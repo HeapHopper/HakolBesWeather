@@ -33,9 +33,10 @@ def new_daily_forecast(latitude, longitude, days=7):
                          days=days,
                          time=data["time"],
                          weather_code=data["weather_code"],
+                         min_temp=data["temperature_2m_min"],
+                         max_temp=data["temperature_2m_max"],
                          sunrise=data["sunrise"],
-                         sunset=data["sunset"],
-                         uv_index=data["uv_index_max"])
+                         sunset=data["sunset"])
 
 if __name__=="__main__":
     print(new_hourly_forecast(31.7788242,35.2257626))

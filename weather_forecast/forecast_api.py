@@ -54,8 +54,8 @@ def fetch_daily_forcast(lat,lon,days):
     params = {
         "latitude": lat,
         "longitude": lon,
-        "daily": "weather_code,sunrise,sunset,uv_index_max",
-        # "timezone": "Asia%2FJerusalem",
+        "daily": ["weather_code", "temperature_2m_max", "temperature_2m_min", "sunrise", "sunset"]
+        #"timezone":
     }
 
     try:

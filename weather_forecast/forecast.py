@@ -31,7 +31,9 @@ class DailyForecast(BaseModel):
 
     days: int = 7
     time: list[str] | None
+
     weather_code: list[int] | None
+    min_temp: list[float] | None
+    max_temp: list[float] | None
     sunrise: list[str] | None
     sunset: list[str] | None
-    uv_index: list[float] | None
