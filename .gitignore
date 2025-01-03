@@ -2,3 +2,5 @@
 .idea/
 
 city_geolocation/__pycache__/
+
+weather_forecast/__pycache__/
