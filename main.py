@@ -9,11 +9,6 @@ if __name__ == "__main__":
     st.title("Hakol BesWeather!")
     st.image("assets/HakolBesWeather.png")
 
-    g = geocoder.ip("me")
-    device_lat, device_lon = g.geojson["features"][0]["geometry"]["coordinates"]
-    device_city = g.geojson["features"][0]["properties"]["city"]
-    print(device_lat,device_lon,device_city)
-
     city = city_choose_method()
 
     if(city is not None):
