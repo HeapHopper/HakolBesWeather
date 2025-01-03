@@ -7,6 +7,7 @@ from weather_forecast.forecast_widget import *
 if __name__ == "__main__":
 
     st.title("Hakol BesWeather!")
+    st.image("assets/HakolBesWeather.png")
 
     g = geocoder.ip("me")
     device_lat, device_lon = g.geojson["features"][0]["geometry"]["coordinates"]
