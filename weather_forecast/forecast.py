@@ -5,6 +5,9 @@ class CurrentWeather(BaseModel):
     longitude:  float
 
     time: str | None
+    timezone: str | None
+    localtime: str | None
+
     temperature: float | None
     apparent_temperature: float | None
     weather_code: int | None

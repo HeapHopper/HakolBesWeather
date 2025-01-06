@@ -2,12 +2,13 @@ import requests
 
 OPEN_METEO_URL = "https://api.open-meteo.com/v1/forecast"
 
-def fetch_current_forecast(lat,lon):
+def fetch_current_forecast(lat,lon,tz):
     # API parameters
     params = {
         "latitude": lat,
         "longitude": lon,
-        "current": ["temperature_2m", "relative_humidity_2m", "apparent_temperature", "weather_code", "wind_speed_10m","wind_direction_10m"]
+        "current": ["temperature_2m", "relative_humidity_2m", "apparent_temperature", "weather_code", "wind_speed_10m","wind_direction_10m"],
+        "timezone": tz
     }
 
     try:

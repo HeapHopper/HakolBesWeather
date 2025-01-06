@@ -1,12 +1,17 @@
 from weather_forecast.forecast import *
 from weather_forecast.forecast_api import *
+from timezone_util.timezone_util import *
 
 def new_current_weather(latitude, longitude):
     # TODO
-    current = fetch_current_forecast(latitude,longitude)
+    timezone_name = location_to_tz_util(float(latitude),float(longitude))
+    target_time = get_local_time(timezone_name)
+    current = fetch_current_forecast(latitude, longitude,timezone_name)
     return CurrentWeather(latitude=latitude,
                           longitude=longitude,
                           time=current["time"],
+                          timezone=timezone_name,
+                          localtime=target_time,
                           temperature=current["temperature_2m"],
                           apparent_temperature=current["apparent_temperature"],
                           weather_code=current["weather_code"],

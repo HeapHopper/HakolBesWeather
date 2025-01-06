@@ -6,6 +6,7 @@ import streamlit as st
 def current_weather_widget(country_name,city_name,lat,lon):
     st.markdown("____")
     current_weather = current_weather_presenter(lat,lon)
+    st.metric(current_weather["timezone"],current_weather["localtime"])
     name, temperature, code = st.columns(3)
     humidity, wind_speed, wind_direction = st.columns(3)
 
