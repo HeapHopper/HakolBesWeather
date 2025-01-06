@@ -45,8 +45,3 @@ def city_widget(city):
         **Longitude**: {longitude}
         """
         st.markdown(output)  # Display the aggregated information
-
-def get_current_city():
-    g = geocoder.ip("me")
-    device_city = g.geojson["features"][0]["properties"]["city"]
-    return device_city
