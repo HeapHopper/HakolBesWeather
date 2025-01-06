@@ -1,6 +1,3 @@
-import streamlit
-
-
 from city_geolocation.city_widget import *
 from map.map_widget import basic_map_widget
 from weather_forecast.forecast_widget import *
@@ -18,4 +15,6 @@ if __name__ == "__main__":
         hourly_data_widget(city.latitude,city.longitude)
         hourly_wind_data_widget(city.latitude,city.longitude)
         daily_data_widget(city.latitude,city.longitude)
+    else:
+        st.text("Destination not found. Please verify the name or coordinates.")
 
