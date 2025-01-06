@@ -30,7 +30,6 @@ def daily_data_presenter(lat,lon,days=7):
     daily_dataframe.set_index('Date')
     return daily_dataframe
 
-
 def parse_weather_code_util(code):
     wmo_descriptions = {
         0: "Clear sky",

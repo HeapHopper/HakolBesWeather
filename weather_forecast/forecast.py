@@ -5,6 +5,9 @@ class CurrentWeather(BaseModel):
     longitude:  float
 
     time: str | None
+    timezone: str | None
+    localtime: str | None
+
     temperature: float | None
     apparent_temperature: float | None
     weather_code: int | None
@@ -18,6 +21,7 @@ class HourlyForecast(BaseModel):
 
     days: int
     time: list[str] | None
+    timezone: str | None
 
     temperature: list[float] | None
     humidity: list[int] | None
@@ -31,6 +35,7 @@ class DailyForecast(BaseModel):
 
     days: int = 7
     time: list[str] | None
+    timezone: str | None
 
     weather_code: list[int] | None
     min_temp: list[float] | None

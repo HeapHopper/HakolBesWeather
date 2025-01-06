@@ -2,12 +2,13 @@ import requests
 
 OPEN_METEO_URL = "https://api.open-meteo.com/v1/forecast"
 
-def fetch_current_forecast(lat,lon):
+def fetch_current_forecast(lat,lon,tz):
     # API parameters
     params = {
         "latitude": lat,
         "longitude": lon,
-        "current": ["temperature_2m", "relative_humidity_2m", "apparent_temperature", "weather_code", "wind_speed_10m","wind_direction_10m"]
+        "current": ["temperature_2m", "relative_humidity_2m", "apparent_temperature", "weather_code", "wind_speed_10m","wind_direction_10m"],
+        "timezone": tz
     }
 
     try:
@@ -24,15 +25,15 @@ def fetch_current_forecast(lat,lon):
     except requests.exceptions.RequestException as e:
         return {"error": str(e)}
 
-def fetch_hourly_forcast(lat, lon, days):
+def fetch_hourly_forcast(lat, lon, tz, days):
     # API parameters
     params = {
         "latitude": lat,
         "longitude": lon,
         "hourly": "temperature_2m,relative_humidity_2m,rain,wind_speed_10m,wind_direction_10m",
         "current_weather": True,  # Include the current weather
-        "forecast_days": days
-        #"timezone": "Asia%2FJerusalem",
+        "forecast_days": days,
+        "timezone": tz,
     }
 
     try:
@@ -49,13 +50,13 @@ def fetch_hourly_forcast(lat, lon, days):
     except requests.exceptions.RequestException as e:
         return {"error": str(e)}
 
-def fetch_daily_forcast(lat,lon,days):
+def fetch_daily_forcast(lat,lon,tz,days):
     # API parameters
     params = {
         "latitude": lat,
         "longitude": lon,
-        "daily": ["weather_code", "temperature_2m_max", "temperature_2m_min", "sunrise", "sunset"]
-        #"timezone":
+        "daily": ["weather_code", "temperature_2m_max", "temperature_2m_min", "sunrise", "sunset"],
+        "timezone": tz
     }
 
     try:
