@@ -25,15 +25,15 @@ def fetch_current_forecast(lat,lon,tz):
     except requests.exceptions.RequestException as e:
         return {"error": str(e)}
 
-def fetch_hourly_forcast(lat, lon, days):
+def fetch_hourly_forcast(lat, lon, tz, days):
     # API parameters
     params = {
         "latitude": lat,
         "longitude": lon,
         "hourly": "temperature_2m,relative_humidity_2m,rain,wind_speed_10m,wind_direction_10m",
         "current_weather": True,  # Include the current weather
-        "forecast_days": days
-        #"timezone": "Asia%2FJerusalem",
+        "forecast_days": days,
+        "timezone": tz,
     }
 
     try:
@@ -50,13 +50,13 @@ def fetch_hourly_forcast(lat, lon, days):
     except requests.exceptions.RequestException as e:
         return {"error": str(e)}
 
-def fetch_daily_forcast(lat,lon,days):
+def fetch_daily_forcast(lat,lon,tz,days):
     # API parameters
     params = {
         "latitude": lat,
         "longitude": lon,
-        "daily": ["weather_code", "temperature_2m_max", "temperature_2m_min", "sunrise", "sunset"]
-        #"timezone":
+        "daily": ["weather_code", "temperature_2m_max", "temperature_2m_min", "sunrise", "sunset"],
+        "timezone": tz
     }
 
     try:

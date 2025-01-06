@@ -20,11 +20,13 @@ def new_current_weather(latitude, longitude):
                           wind_direction=current["wind_direction_10m"])
 
 def new_hourly_forecast(latitude, longitude, days=7):
-    data = fetch_hourly_forcast(latitude,longitude,days)
+    timezone_name = location_to_tz_util(float(latitude),float(longitude))
+    data = fetch_hourly_forcast(latitude,longitude,timezone_name,days)
     return HourlyForecast(latitude=latitude,
                           longitude=longitude,
                           days=days,
                           time=data["time"],
+                          timezone=timezone_name,
                           temperature=data["temperature_2m"],
                           humidity=data["relative_humidity_2m"],
                           rain_prob=data["rain"],
@@ -32,11 +34,13 @@ def new_hourly_forecast(latitude, longitude, days=7):
                           wind_direction=data["wind_direction_10m"])
 
 def new_daily_forecast(latitude, longitude, days=7):
-    data = fetch_daily_forcast(latitude, longitude, days)
+    timezone_name = location_to_tz_util(float(latitude),float(longitude))
+    data = fetch_daily_forcast(latitude, longitude, timezone_name,days)
     return DailyForecast(latitude=latitude,
                          longitude=longitude,
                          days=days,
                          time=data["time"],
+                         timezone=timezone_name,
                          weather_code=data["weather_code"],
                          min_temp=data["temperature_2m_min"],
                          max_temp=data["temperature_2m_max"],
